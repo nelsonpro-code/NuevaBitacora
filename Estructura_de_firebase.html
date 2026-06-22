@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitácora de Rey - Estructura de Firebase</title>
+    <style>
+        :root {
+            --bg-principal: #121212;
+            --bg-tarjeta: #1e1e1e;
+            --texto-principal: #e0e0e0;
+            --texto-secundario: #a0a0a0;
+            --firebase-amarillo: #ffca28;
+            --firebase-naranja: #f57c00;
+            --consola-bg: #000000;
+            --consola-texto: #00ff66;
+            --code-bg: #2d2d2d;
+        }
+
+        body {
+            background-color: var(--bg-principal);
+            color: var(--texto-principal);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .contenedor {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            border-bottom: 2px solid var(--firebase-naranja);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: var(--firebase-amarillo);
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        h2 {
+            color: var(--firebase-naranja);
+            font-size: 1.4rem;
+            margin-top: 30px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+        }
+
+        h3 {
+            color: var(--firebase-amarillo);
+            font-size: 1.1rem;
+            margin-top: 20px;
+        }
+
+        p {
+            color: var(--texto-principal);
+        }
+
+        .modulo {
+            background-color: var(--bg-tarjeta);
+            border: 1px solid #333;
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .badge {
+            background-color: var(--firebase-naranja);
+            color: #000;
+            padding: 3px 8px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border-radius: 3px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .codigo-consola {
+            background-color: var(--consola-bg);
+            color: var(--consola-texto);
+            font-family: 'Courier New', Courier, monospace;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border: 1px solid #222;
+            margin: 15px 0;
+        }
+
+        .codigo-js {
+            background-color: var(--code-bg);
+            color: #f8f8f2;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border: 1px solid #444;
+            margin: 15px 0;
+        }
+
+        .keyword { color: #ff79c6; }
+        .string { color: #f1fa8c; }
+        .comment { color: #6272a4; }
+        .function { color: #50fa7b; }
+        .number { color: #bd93f9; }
+
+        ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="contenedor">
+    <header>
+        <h1>🔥 Estructura Teórico-Práctica: Módulos de Firebase</h1>
+        <p style="color: var(--texto-secundario); font-size: 0.9rem;">Copia este bloque e infórmalo en tu Bitácora para dominar la persistencia de datos desde el móvil.</p>
+    </header>
+
+    <div class="modulo">
+        <span class="badge">MÓDULO 1: TEORÍA ESENCIAL</span>
+        <h2>Arquitectura Serverless y Estructura NoSQL</h2>
+        
+        <h3>¿Qué es NoSQL (Firestore)?</h3>
+        <p>A diferencia de las bases de datos relacionales tradicionales (que usan tablas, filas y columnas), Firebase Cloud Firestore organiza la información en un formato de <strong>Documentos y Colecciones</strong>, estructurado de forma casi idéntica a los objetos JSON de JavaScript.</p>
+        
+        <ul>
+            <li><strong>Documento:</strong> Es una unidad de almacenamiento que contiene pares de clave-valor (ej. <code>nombre: "Rey"</code>). Su tamaño máximo es de 1 MB.</li>
+            <li><strong>Colección:</strong> Es un contenedor de documentos. No puede contener valores directamente, solo almacena documentos.</li>
+        </ul>
+
+        <p>Visualmente, la estructura lógica se modela de la siguiente manera:</p>
+        <div class="codigo-consola">
+[Colección: "usuarios"]
+       └── [Documento: "ID_usuario_1"]
+                     ├── nombre: "Rey"
+                     ├── rol: "Master Developer"
+                     └── [Colección Secundaria: "apuntes"] (Opcional)
+    </div>
+    </div>
+
+    <div class="modulo">
+        <span class="badge">MÓDULO 2: CONFIGURACIÓN E INICIALIZACIÓN</span>
+        <h2>Integración Limpia en HTML (Modo CDN)</h2>
+        <p>Para trabajar desde tu celular en <strong>Acode</strong> sin necesidad de instalar dependencias pesadas mediante Node.js, importamos los módulos oficiales de Firebase mediante enlaces web seguros (CDN).</p>
+        
+        <h3>Estructura base de conexión:</h3>
+        <div class="codigo-js">
+<span class="comment">&lt;!-- Agrega este script de tipo módulo dentro de tu index.html --&gt;</span>
+&lt;<span class="keyword">script</span> <span class="keyword">type</span>=<span class="string">"module"</span>&gt;
+    <span class="comment">// 1. Importar las funciones necesarias desde las librerías oficiales</span>
+    <span class="keyword">import</span> { initializeApp } <span class="keyword">from</span> <span class="string">"https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js"</span>;
+    <span class="keyword">import</span> { getFirestore, collection, addDoc, getDocs } <span class="keyword">from</span> <span class="string">"https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js"</span>;
+
+    <span class="comment">// 2. Credenciales del proyecto (Las copias desde la consola web de Firebase)</span>
+    <span class="keyword">const</span> firebaseConfig = {
+        apiKey: <span class="string">"AIzaSyA1...TuKeyPersonal"</span>,
+        authDomain: <span class="string">"mi-bitacora-rey.firebaseapp.com"</span>,
+        projectId: <span class="string">"mi-bitacora-rey"</span>,
+        storageBucket: <span class="string">"mi-bitacora-rey.appspot.com"</span>,
+        messagingSenderId: <span class="string">"9876543210"</span>,
+        appId: <span class="string">"1:98765:web:12345"</span>
+    };
+
+    <span class="comment">// 3. Inicializar las instancias</span>
+    <span class="keyword">const</span> app = <span class="function">initializeApp</span>(firebaseConfig);
+    <span class="keyword">const</span> db = <span class="function">getFirestore</span>(app);
+
+    <span class="comment">// Tu código interactivo comenzará aquí abajo...</span>
+&lt;/<span class="keyword">script</span>&gt;
+        </div>
+    </div>
+
+    <div class="modulo">
+        <span class="badge">MÓDULO 3: PRÁCTICA DE OPERACIONES (CRUD)</span>
+        <h2>Manipulación de Datos con JavaScript Asíncrono</h2>
+        <p>Dado que las conexiones a la nube toman tiempo de red, Firebase utiliza promesas de JavaScript mediante el patrón de diseño <code>async / await</code>.</p>
+
+        <h3>Operación 1: Guardar un apunte (Crear / Add)</h3>
+        <div class="codigo-js">
+<span class="comment">// Función asíncrona para guardar notas de programación</span>
+<span class="keyword">async</span> <span class="keyword">function</span> <span class="function">guardarApunte</span>(titulo, contenido) {
+    <span class="keyword">try</span> {
+        <span class="comment">// Apunta a la colección "apuntes" e inserta un objeto JSON</span>
+        <span class="keyword">const</span> docRef = <span class="keyword">await</span> <span class="function">addDoc</span>(<span class="function">collection</span>(db, <span class="string">"apuntes"</span>), {
+            titulo: titulo,
+            contenido: contenido,
+            fecha: <span class="keyword">new</span> <span class="function">Date</span>()
+        });
+        console.<span class="function">log</span>(<span class="string">"Documento guardado con ID: "</span>, docRef.id);
+    } <span class="keyword">catch</span> (error) {
+        console.<span class="function">error</span>(<span class="string">"Error al guardar datos: "</span>, error);
+    }
+}
+        </div>
+
+        <h3>Operación 2: Leer los apuntes guardados (Leer / Get)</h3>
+        <div class="codigo-js">
+<span class="comment">// Función asíncrona para descargar y mostrar la información</span>
+<span class="keyword">async</span> <span class="keyword">function</span> <span class="function">obtenerApuntes</span>() {
+    <span class="keyword">try</span> {
+        <span class="keyword">const</span> querySnapshot = <span class="keyword">await</span> <span class="function">getDocs</span>(<span class="function">collection</span>(db, <span class="string">"apuntes"</span>));
+        querySnapshot.<span class="function">forEach</span>((doc) => {
+            <span class="comment">// doc.data() extrae las variables del objeto guardado</span>
+            console.<span class="function">log</span>(<span class="string">`ID: ${doc.id} => `</span>, doc.<span class="function">data</span>());
+        });
+    } <span class="keyword">catch</span> (error) {
+        console.<span class="function">error</span>(<span class="string">"Error al leer datos: "</span>, error);
+    }
+}
+        </div>
+    </div>
+
+    <div class="modulo">
+        <span class="badge">MÓDULO 4: DESPLIEGUE (HOSTING EN TERMUX)</span>
+        <h2>Subir tu Bitácora a Producción Real</h2>
+        <p>Una vez que tu código esté listo, puedes instalar las herramientas de Firebase en Termux para publicar tu bitácora en la web de manera gratuita:</p>
+        
+        <div class="codigo-consola">
+# 1. Instalar NodeJS en Termux si no lo tienes
+pkg install nodejs
+
+# 2. Instalar la CLI de Firebase globalmente
+npm install -g firebase-tools
+
+# 3. Iniciar sesión en tu cuenta de Google desde la terminal
+firebase login
+
+# 4. Inicializar el servicio de Hosting en tu carpeta
+firebase init hosting
+
+# 5. Desplegar tu proyecto para obtener tu URL pública
+firebase deploy
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+```
