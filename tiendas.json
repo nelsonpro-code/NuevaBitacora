@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "nombre": "Comercial Viacha Tech",
+    "categoria": "Electrónica y Celulares",
+    "lat": -16.6533,
+    "lng": -68.3017,
+    "whatsapp": "59170000000",
+    "descripcion": "Venta de accesorios para celular y reparación."
+  },
+  {
+    "id": 2,
+    "nombre": "Boutique Moda Viacha",
+    "categoria": "Ropa y Calzado",
+    "lat": -16.6515,
+    "lng": -68.2995,
+    "whatsapp": "59170000001",
+    "descripcion": "Ropa variada para damas y varones."
+  }
+]
