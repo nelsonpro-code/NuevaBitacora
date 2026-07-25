@@ -16,5 +16,14 @@
     "lng": -68.2995,
     "whatsapp": "59170000001",
     "descripcion": "Ropa variada para damas y varones."
+  },
+  {
+    "id": 3,
+    "nombre": "Nelson Tech & Software",
+    "categoria": "Desarrollo de Software y Tecnología",
+    "lat": -16.657764,
+    "lng": -68.30211,
+    "whatsapp": "59163159223",
+    "descripcion": "Desarrollo de software y tecnología en PC y Android."
   }
 ]
